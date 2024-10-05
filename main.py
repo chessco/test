@@ -6,9 +6,9 @@ from pinecone_plugins.assistant.models.chat import Message
 
 app = Flask(__name__) 
 
-pc = Pinecone('23e768bf-3c6b-4c0d-a911-5512801f738a')
+pc = Pinecone(api_key=os.environ.get('PINECONE_API_KEY'))
 
-assistant = pc.assistant.Assistant('alicia')
+assistant = pc.assistant.Assistant(assistant_name=os.environ.get('ASSISTANT_NAME'))
 
 def chat_with_assistant(question):
     chat_context = [Message(content=question)]
